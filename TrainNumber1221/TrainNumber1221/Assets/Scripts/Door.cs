@@ -8,6 +8,9 @@ public class Door : MonoBehaviour {
     float closeZpos = 0.0f;
     float openZpos = 0.8f;
 
+    [SerializeField]
+    bool canChange = false;
+
     Animation anim;
 
 	// Use this for initialization
@@ -30,6 +33,11 @@ public class Door : MonoBehaviour {
             CloseDoor();
         }
         */
+        if (canChange) {
+            if (Input.GetButtonDown("Fire1")) {
+                doorChange();
+            }
+        }
     }
 
     void OpenDoor()
@@ -52,5 +60,19 @@ public class Door : MonoBehaviour {
             CloseDoor();
         }
         isOpen = !isOpen;
+    }
+
+    void OnTriggerEnter(Collider coll)
+    {
+        if (coll.tag == "Player") {
+            canChange = true;
+        }
+    }
+
+    void OnTriggerExit(Collider coll)
+    {
+        if (coll.tag == "Player") {
+            canChange = false;
+        }
     }
 }
