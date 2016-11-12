@@ -4,6 +4,8 @@ using UnityStandardAssets.Characters.FirstPerson;
 
 public class letter : MonoBehaviour {
 
+    //AudioManager am;
+
     //[SerializeField]
     bool canRead = false;
     //[SerializeField]
@@ -13,6 +15,8 @@ public class letter : MonoBehaviour {
     GameObject theLetter;
     // Use this for initialization
 
+    AudioManager am;
+
     [SerializeField]
     GameObject thePlayer, actionImg;
 	void Start () {
@@ -20,7 +24,13 @@ public class letter : MonoBehaviour {
         if (thePlayer == null) {
             Debug.LogError("NO PLAYER FOUND");
         }
-	}
+
+        am = AudioManager.instance;
+        if (am == null)
+        {
+            Debug.LogError("NO AM FOUND");
+        }
+    }
 	
 	// Update is called once per frame
 	void Update () {
@@ -38,7 +48,7 @@ public class letter : MonoBehaviour {
 
     void Read()
     {
-        
+        am.PlaySound("paper");
         actionImg.SetActive(false);
         // lock
         thePlayer.GetComponent<FirstPersonController>().enabled = false;
@@ -48,6 +58,7 @@ public class letter : MonoBehaviour {
 
     void StopReading()
     {
+        am.PlaySound("paper");
         isReading = false; 
         thePlayer.GetComponent<FirstPersonController>().enabled = true;
         // unlock

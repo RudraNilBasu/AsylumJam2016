@@ -2,8 +2,8 @@ using UnityEngine;
 using System.Collections;
 
 public class Door : MonoBehaviour {
-
-    bool isOpen = false;
+    
+    bool isOpen = false, isLocked=false;
 
     float closeZpos = 0.0f;
     float openZpos = 0.8f;
@@ -15,13 +15,21 @@ public class Door : MonoBehaviour {
 
     [SerializeField]
     GameObject actionImg;
+
+    AudioManager am;
+
 	// Use this for initialization
 	void Start () {
         anim = GetComponent<Animation>();
         if (anim == null) {
             Debug.LogError("No Animation component found for the door!");
         }
-	}
+
+        am = AudioManager.instance;
+        if (am == null) {
+            Debug.LogError("No AM!");
+        }
+    }
 	
 	// Update is called once per frame
 	void Update () {
@@ -35,7 +43,7 @@ public class Door : MonoBehaviour {
             CloseDoor();
         }
         */
-        if (canChange) {
+        if (canChange && !isLocked) {
             if (Input.GetButtonDown("Fire1")) {
                 doorChange();
             }
@@ -45,12 +53,14 @@ public class Door : MonoBehaviour {
     void OpenDoor()
     {
         anim.Play("doorOpen");
-        gameObject.GetComponent<AudioSource>().Play();
+        am.PlaySound("door");
+        //gameObject.GetComponent<AudioSource>().Play();
     }
 
     void CloseDoor()
     {
         anim.Play("doorClose");
+        am.PlaySound("door");
     }
 
     public void doorChange()
@@ -79,5 +89,11 @@ public class Door : MonoBehaviour {
             canChange = false;
             actionImg.SetActive(false);
         }
+    }
+
+    public void lockDoor()
+    {
+        CloseDoor();
+        isLocked = true;
     }
 }

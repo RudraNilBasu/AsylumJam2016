@@ -11,7 +11,7 @@ public class tapWaterTrigger : MonoBehaviour {
     [SerializeField]
     GameObject tapWater;
 
-    float waitingTime = 10.0f;
+    float waitingTime = 8.0f; // it was 10.0f
         
     void OnTriggerEnter(Collider coll)
     {

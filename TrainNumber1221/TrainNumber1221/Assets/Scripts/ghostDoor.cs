@@ -6,7 +6,7 @@ public class ghostDoor : MonoBehaviour {
     float delayTime = 5.0f;
     bool knockingStarted = false, canOpen = false, willKnock=false, isOver=false;
     [SerializeField]
-    GameObject thePlayer, actionImg;
+    GameObject thePlayer, actionImg, theNewsPaper;
 
     [SerializeField]
     AudioClip doorKnock, doorSlam;
@@ -25,6 +25,7 @@ public class ghostDoor : MonoBehaviour {
             willKnock = false;
             isOver = true;
             //Debug.Log("Start THUD");
+            theNewsPaper.SetActive(true);
             gameObject.GetComponent<Animation>().Play("doorSlam");
             StartCoroutine(waitAndPlay());
         }
