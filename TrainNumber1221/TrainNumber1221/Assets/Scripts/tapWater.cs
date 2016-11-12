@@ -7,10 +7,12 @@ public class tapWater : MonoBehaviour {
     GameObject thePlayer, actionImg, theWater;
 
     [SerializeField]
-    GameObject closeInfo;
+    GameObject closeInfo, waterTrigger;
 
     bool canOpen = false;
     bool isOpen = false;
+
+    bool isOver = false;
 
     int doOnce = 0;
 	// Use this for initialization
@@ -20,16 +22,12 @@ public class tapWater : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        if (canOpen && !isOpen && Input.GetMouseButton(0)) {
+        if (canOpen && !isOpen && Input.GetMouseButton(0) &&isOver) {
             theWater.SetActive(true);
             isOpen = true;
             actionImg.SetActive(false);
             GetComponent<AudioSource>().Play();
             closeInfo.SetActive(true);
-
-            if (doOnce == 0) {
-                doOnce++;
-            }
         }
 
         if (isOpen && Input.GetMouseButton(1)) {
@@ -38,6 +36,10 @@ public class tapWater : MonoBehaviour {
             actionImg.SetActive(false);
             GetComponent<AudioSource>().Stop();
             closeInfo.SetActive(false);
+
+            if (!isOver) {
+                waterTrigger.GetComponent<tapWaterTrigger>().callTrigger();
+            }
         }
 	}
     void OnMouseOver()
@@ -58,6 +60,20 @@ public class tapWater : MonoBehaviour {
         if (isOpen) {
             closeInfo.SetActive(false);
         }
+    }
+
+    public void turnOn()
+    {
+        theWater.SetActive(true);
+        isOpen = true;
+        
+        GetComponent<AudioSource>().Play();
+        //closeInfo.SetActive(true);
+    }
+
+    public void itsOver()
+    {
+        isOver = true;
     }
 }
 

@@ -4,6 +4,11 @@ using System.Collections;
 public class manCrying : MonoBehaviour {
 
     int doOnce = 0;
+    
+
+    [SerializeField]
+    GameObject tapWaterTrigger;
+
 	// Use this for initialization
 	void Start () {
         doOnce = 0;
@@ -20,7 +25,18 @@ public class manCrying : MonoBehaviour {
         {
             doOnce++;
             gameObject.GetComponent<AudioSource>().Play();
+            tapWaterTrigger.SetActive(true);
+            //StartCoroutine(Trigger());
         }
     }
+    /*
+    IEnumerator Trigger()
+    {
+        yield return new WaitForSeconds(waitingTime);
+        
+        // turn tap on
+        tapWater.GetComponent<tapWater>().turnOn();
+    }
+    */
     
 }
