@@ -7,7 +7,7 @@ public class tapWater : MonoBehaviour {
     GameObject thePlayer, actionImg, theWater;
 
     [SerializeField]
-    GameObject closeInfo, waterTrigger;
+    GameObject closeInfo, waterTrigger, doorTrigger;
 
     bool canOpen = false;
     bool isOpen = false;
@@ -74,6 +74,8 @@ public class tapWater : MonoBehaviour {
     public void itsOver()
     {
         isOver = true;
+        // wait a few seconds ?
+        doorTrigger.SetActive(true);
     }
 }
 
