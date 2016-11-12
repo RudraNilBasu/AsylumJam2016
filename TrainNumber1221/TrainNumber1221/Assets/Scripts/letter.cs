@@ -1,42 +1,55 @@
 using UnityEngine;
 using System.Collections;
+using UnityStandardAssets.Characters.FirstPerson;
 
 public class letter : MonoBehaviour {
 
-    [SerializeField]
+    //[SerializeField]
     bool canRead = false;
-    [SerializeField]
+    //[SerializeField]
     bool isReading = false;
 
     [SerializeField]
     GameObject theLetter;
-	// Use this for initialization
+    // Use this for initialization
+
+    [SerializeField]
+    GameObject thePlayer, actionImg;
 	void Start () {
-	
+        thePlayer = GameObject.Find("Player");
+        if (thePlayer == null) {
+            Debug.LogError("NO PLAYER FOUND");
+        }
 	}
 	
 	// Update is called once per frame
 	void Update () {
+        //Debug.Log(Vector3.Distance(thePlayer.transform.position, transform.position));
+
         if (canRead && Input.GetButtonDown("Fire1")) {
             Read();
         }
-        /*
-        if (isReading && Input.GetButtonDown("Fire1")) {
+        
+        if (isReading && Input.GetMouseButtonDown(1)) {
             StopReading();
         }
-        */
+        
 	}
 
     void Read()
     {
-        isReading = true;
+        
+        actionImg.SetActive(false);
         // lock
+        thePlayer.GetComponent<FirstPersonController>().enabled = false;
         theLetter.SetActive(true);
+        isReading = true;
     }
 
     void StopReading()
     {
-        isReading = false;
+        isReading = false; 
+        thePlayer.GetComponent<FirstPersonController>().enabled = true;
         // unlock
         theLetter.SetActive(false);
     }
@@ -44,11 +57,16 @@ public class letter : MonoBehaviour {
     void OnMouseOver()
     {
         // check distance
-        canRead = true;
+        if (!isReading && Vector3.Distance(thePlayer.transform.position, transform.position) < 2.0f)
+        {
+            canRead = true;
+            actionImg.SetActive(true);
+        }
     }
     void OnMouseExit()
     {
         canRead = false;
+        actionImg.SetActive(false);
     }
     /*
     void OnTriggerEnter(Collider coll)

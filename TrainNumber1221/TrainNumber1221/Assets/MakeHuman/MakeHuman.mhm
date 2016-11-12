@@ -1,0 +1,28 @@
+# Written by MakeHuman 1.0.2
+version v1.0.2
+tags MakeHuman
+hair fhair01 c4808d0d-bbbc-4e62-82a1-8610b06d0e05
+eyes HighPolyEyes 2c12f43b-1303-432c-b7ce-d78346baf2e6
+clothes shoes02 8887caca-d6fb-4d73-af10-1d4fb740a936
+clothes jeans01 faa58a00-05db-4a53-a3a6-72af1cec2053
+clothes crudehat 212ac1eb-16eb-4228-91cb-cbc936d2e5a4
+clothes Jacket 594935b0-4b4a-4296-a35f-3e273e9b8e7a
+clothes Shirt01 c8c87311-c197-4bf8-9e01-fc05a308aee0
+clothesHideFaces True
+gendered BreastFirmness 0.500000
+gendered BreastSize 0.500000
+macro Weight 0.684000
+macro Gender 1.000000
+macro Age 0.723000
+macro Height 0.845000
+macro Asian 0.333333
+macro African 0.333333
+macro Caucasian 0.333333
+macro Muscle 0.858000
+macro BodyProportions 0.858000
+background enabled False
+skinMaterial skins/toon01/toon01.mhmat
+material fhair01 c4808d0d-bbbc-4e62-82a1-8610b06d0e05 hair/fhair01/materials/fhair01_black.mhmat
+material HighPolyEyes 2c12f43b-1303-432c-b7ce-d78346baf2e6 eyes/materials/brown.mhmat
+skeleton basic.json
+subdivide False

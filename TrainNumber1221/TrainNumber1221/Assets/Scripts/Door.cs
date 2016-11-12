@@ -13,6 +13,8 @@ public class Door : MonoBehaviour {
 
     Animation anim;
 
+    [SerializeField]
+    GameObject actionImg;
 	// Use this for initialization
 	void Start () {
         anim = GetComponent<Animation>();
@@ -43,6 +45,7 @@ public class Door : MonoBehaviour {
     void OpenDoor()
     {
         anim.Play("doorOpen");
+        gameObject.GetComponent<AudioSource>().Play();
     }
 
     void CloseDoor()
@@ -66,6 +69,7 @@ public class Door : MonoBehaviour {
     {
         if (coll.tag == "Player") {
             canChange = true;
+            actionImg.SetActive(true);
         }
     }
 
@@ -73,6 +77,7 @@ public class Door : MonoBehaviour {
     {
         if (coll.tag == "Player") {
             canChange = false;
+            actionImg.SetActive(false);
         }
     }
 }
