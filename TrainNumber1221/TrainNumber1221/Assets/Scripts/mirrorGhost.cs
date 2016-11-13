@@ -8,6 +8,7 @@ public class mirrorGhost : MonoBehaviour {
     [SerializeField]
     GameObject light1, light2;
 
+    
     AudioManager am;
 
     GameObject gm;
