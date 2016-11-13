@@ -6,10 +6,13 @@ public class silentDoorClose : MonoBehaviour {
 
 
     [SerializeField]
-    GameObject ghostDoor, playerWhisper, suitcase, suitcaseTrigger;
+    GameObject ghostDoor, playerWhisper, suitcase, suitcaseTrigger, candle, fallenCandle, letter, burntLetter;
 
     [SerializeField]
     AudioClip whisper; // don't you feel safe anymore
+
+    [SerializeField]
+    playWhisper ph;
     
     // Use this for initialization
     void Start () {
@@ -22,8 +25,10 @@ public class silentDoorClose : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         if (Input.GetKey(KeyCode.T)) {
+            /*
             playerWhisper.GetComponent<AudioSource>().clip = whisper;
             Debug.Log("DONE");
+            */
         }
 	}
 
@@ -40,10 +45,16 @@ public class silentDoorClose : MonoBehaviour {
     IEnumerator playWhisper()
     {
         yield return new WaitForSeconds(2.0f);
-        playerWhisper.GetComponent<AudioSource>().clip=whisper;
-        playerWhisper.GetComponent<AudioSource>().Play();
-        Debug.Log("don't you feel safe anymore ?");
+        //playerWhisper.GetComponent<AudioSource>().clip=whisper;
+        //playerWhisper.GetComponent<AudioSource>().Play();
+        //Debug.Log("don't you feel safe anymore ?");
+        //playerWhisper.GetComponent<playWhisper>().Play();
+        ph.Play();
         suitcase.SetActive(false);
         suitcaseTrigger.SetActive(true);
+        letter.SetActive(false);
+        burntLetter.SetActive(true);
+        candle.SetActive(false);
+        fallenCandle.SetActive(true);
     }
 }

@@ -5,6 +5,12 @@ using UnityStandardAssets.Characters.FirstPerson;
 public class letter : MonoBehaviour {
 
     //AudioManager am;
+    [SerializeField]
+    GameObject mirrorGhost, enemy;
+
+    [SerializeField]
+    bool isBurnt = false;
+    int doOnce = 0;
 
     //[SerializeField]
     bool canRead = false;
@@ -54,6 +60,8 @@ public class letter : MonoBehaviour {
         thePlayer.GetComponent<FirstPersonController>().enabled = false;
         theLetter.SetActive(true);
         isReading = true;
+
+        
     }
 
     void StopReading()
@@ -63,6 +71,15 @@ public class letter : MonoBehaviour {
         thePlayer.GetComponent<FirstPersonController>().enabled = true;
         // unlock
         theLetter.SetActive(false);
+
+        if (isBurnt && doOnce == 0)
+        {
+            doOnce++;
+            // Activate Ghost
+            mirrorGhost.SetActive(true);
+            enemy.SetActive(true);
+            enemy.GetComponent<EnemyLookPlayer>().look();
+        }
     }
 
     void OnMouseOver()
