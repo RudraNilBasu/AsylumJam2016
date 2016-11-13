@@ -96,4 +96,10 @@ public class Door : MonoBehaviour {
         CloseDoor();
         isLocked = true;
     }
+
+    public void unlockDoor()
+    {
+        isLocked = false;
+        gameObject.GetComponent<Animation>().Play("doorUnlock");
+    }
 }

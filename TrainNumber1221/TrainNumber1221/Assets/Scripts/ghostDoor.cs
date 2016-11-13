@@ -9,7 +9,7 @@ public class ghostDoor : MonoBehaviour {
     GameObject thePlayer, actionImg, theNewsPaper;
 
     [SerializeField]
-    AudioClip doorKnock, doorSlam;
+    AudioClip doorKnock, doorSlam, silentClose;
 
     void Start()
     {
@@ -61,6 +61,13 @@ public class ghostDoor : MonoBehaviour {
             
             StartCoroutine(delay());
         }
+    }
+
+    public void CloseDoor()
+    {
+        gameObject.GetComponent<Animation>().Play("ghostDoorClose");
+        gameObject.GetComponent<AudioSource>().clip = silentClose;
+        gameObject.GetComponent<AudioSource>().Play();
     }
 
     IEnumerator delay()
