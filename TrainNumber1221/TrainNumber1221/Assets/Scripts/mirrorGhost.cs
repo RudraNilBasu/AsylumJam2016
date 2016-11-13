@@ -4,9 +4,13 @@ using System.Collections;
 public class mirrorGhost : MonoBehaviour {
     int doOnce = 0;
     [SerializeField]
-    GameObject theEnemy, theLight;
+    GameObject theEnemy, theLight, footstepTrigger;
+    [SerializeField]
+    GameObject light1, light2;
 
     AudioManager am;
+
+    GameObject gm;
 	// Use this for initialization
 	void Start () {
         am = AudioManager.instance;
@@ -14,7 +18,7 @@ public class mirrorGhost : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-	
+        gm = GameObject.Find("GameManager");
 	}
 
     void OnMouseEnter()
@@ -32,6 +36,12 @@ public class mirrorGhost : MonoBehaviour {
         am.PlaySound("lightSmash");
         theLight.SetActive(false);
         theEnemy.SetActive(false);
+        light1.GetComponent<Animation>().Play("lightFlicker_2");
+        light2.GetComponent<Animation>().Play("lightFlicker_2");
+        footstepTrigger.SetActive(true);
+        yield return new WaitForSeconds(15.0f);
+        // start thump
+        gm.GetComponent<thump>().Play();
     }
 
     void OnMouseExit()

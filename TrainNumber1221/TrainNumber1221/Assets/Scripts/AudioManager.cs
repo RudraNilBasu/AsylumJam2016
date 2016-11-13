@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 
 [System.Serializable]
 public class Sound
@@ -74,4 +74,9 @@ public class AudioManager : MonoBehaviour
 		// when the sound _name is not found
 		Debug.LogWarning ("No Audio Found in the name "+_name);
 	}
+
+    public void setVolume(int index, float amt)
+    {
+        sounds[4].volume = amt;
+    }
 }
