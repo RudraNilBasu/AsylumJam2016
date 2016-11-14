@@ -2,17 +2,18 @@ using UnityEngine;
 using System.Collections;
 
 public class ghostDoor : MonoBehaviour {
-
+    AudioManager am;
     float delayTime = 5.0f;
     bool knockingStarted = false, canOpen = false, willKnock=false, isOver=false;
     [SerializeField]
-    GameObject thePlayer, actionImg, theNewsPaper;
+    GameObject thePlayer, actionImg, theNewsPaper, bck;
 
     [SerializeField]
     AudioClip doorKnock, doorSlam, silentClose;
 
     void Start()
     {
+        am = AudioManager.instance;
         thePlayer = GameObject.Find("Player");
         if (thePlayer == null) {
             Debug.LogError("No Player Found");
@@ -33,13 +34,16 @@ public class ghostDoor : MonoBehaviour {
 
     IEnumerator waitAndPlay()
     {
+        am.PlaySound("doorCreek");
         yield return new WaitForSeconds(0.4f);
         //gameObject.GetComponent<AudioSource>().Play(1);
         
         gameObject.GetComponent<AudioSource>().clip = doorSlam;
         gameObject.GetComponent<AudioSource>().Play();
-        
+        am.PlaySound("heartbeat");
+        am.PlaySound("breath2");
 
+        bck.GetComponent<AudioSource>().Play();
     }
 
     public void activate()

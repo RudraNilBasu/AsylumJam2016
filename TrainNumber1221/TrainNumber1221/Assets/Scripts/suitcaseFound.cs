@@ -29,7 +29,8 @@ public class suitcaseFound : MonoBehaviour {
     IEnumerator delay()
     {
         yield return new WaitForSeconds(2.0f);
-        quote.text = "";
+        //quote.text = "";
+        actionImg.SetActive(false);
         gameObject.SetActive(false);
     }
 

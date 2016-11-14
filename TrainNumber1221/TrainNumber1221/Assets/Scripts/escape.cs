@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class escape : MonoBehaviour {
 
@@ -15,7 +16,8 @@ public class escape : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         if (canExit && Input.GetMouseButton(0)) {
-            Debug.Log("NEXT LEVEL");
+            //Debug.Log("NEXT LEVEL");
+            SceneManager.LoadScene("end");
         }
 	}
 

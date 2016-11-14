@@ -6,11 +6,13 @@ public class doorLocker : MonoBehaviour {
     [SerializeField]
     GameObject theDoor, doorKnock, ghostWalk, roomKnock, doorUnlock, ghostDoor, ghostDoorCloseTrigger;
 
+
+    AudioManager am;
     float timeBeforeFootstep = 30.0f;
 
 	// Use this for initialization
 	void Start () {
-	
+        am = AudioManager.instance;
 	}
 	
 	// Update is called once per frame
@@ -37,12 +39,14 @@ public class doorLocker : MonoBehaviour {
         yield return new WaitForSeconds(5.0f);
         // turn on footsteps
         ghostWalk.GetComponent<ghostWalk>().walk();
+        am.PlaySound("heartbeat");
         // add a Walk() method
         yield return new WaitForSeconds(30.0f);
         ghostWalk.SetActive(false);
         roomKnock.GetComponent<AudioSource>().Play();
         yield return new WaitForSeconds(3.0f);
         roomKnock.GetComponent<AudioSource>().Play();
+        am.PlaySound("heartbeat");
         yield return new WaitForSeconds(10.0f);
         doorUnlock.GetComponent<AudioSource>().Play();
         theDoor.GetComponent<Door>().unlockDoor();

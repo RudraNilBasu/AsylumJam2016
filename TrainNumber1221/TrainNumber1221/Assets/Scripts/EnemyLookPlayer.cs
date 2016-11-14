@@ -16,6 +16,6 @@ public class EnemyLookPlayer : MonoBehaviour {
 
     public void look()
     {
-        transform.LookAt(target);
+        //transform.LookAt(target);
     }
 }

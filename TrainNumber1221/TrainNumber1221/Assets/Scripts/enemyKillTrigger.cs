@@ -4,7 +4,7 @@ using System.Collections;
 public class enemyKillTrigger : MonoBehaviour
 {
     [SerializeField]
-    GameObject manThrow, enemy;
+    GameObject manThrow, enemy, thump, footsteps;
 
     [SerializeField]
     RuntimeAnimatorController enemyStand;
@@ -28,6 +28,8 @@ public class enemyKillTrigger : MonoBehaviour
         if (doOnce == 0 && coll.tag == "Player")
         {
             doOnce++;
+            thump.SetActive(false);
+            footsteps.SetActive(false);
             am.PlaySound("heartbeat");
             manThrow.GetComponent<AudioSource>().Play();
             manThrow.GetComponent<Animation>().Play("manThrow");

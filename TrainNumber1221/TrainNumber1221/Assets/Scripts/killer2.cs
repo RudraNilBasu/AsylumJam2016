@@ -23,7 +23,7 @@ public class killer2 : MonoBehaviour {
         if (doOnce == 0 && coll.tag == "Player")
         {
             doOnce++;
-            barrier.SetActive(false);
+            //barrier.SetActive(false);
             am.PlaySound("heartbeat");
             nextDoor.GetComponent<Animation>().Play("doorOpen");
             manCry.GetComponent<AudioSource>().Play();

@@ -2,6 +2,8 @@ using UnityEngine;
 using System.Collections;
 
 public class tapWater : MonoBehaviour {
+    AudioManager am;
+    int playOnce = 0;
 
     [SerializeField]
     GameObject thePlayer, actionImg, theWater;
@@ -17,11 +19,13 @@ public class tapWater : MonoBehaviour {
     int doOnce = 0;
 	// Use this for initialization
 	void Start () {
-	
+        am = AudioManager.instance;
 	}
 	
 	// Update is called once per frame
 	void Update () {
+        
+
         if (canOpen && !isOpen && Input.GetMouseButton(0) &&isOver) {
             theWater.SetActive(true);
             isOpen = true;
@@ -64,6 +68,11 @@ public class tapWater : MonoBehaviour {
 
     public void turnOn()
     {
+        if (playOnce == 0)
+        {
+            playOnce++;
+            am.PlaySound("water");
+        }
         theWater.SetActive(true);
         isOpen = true;
         

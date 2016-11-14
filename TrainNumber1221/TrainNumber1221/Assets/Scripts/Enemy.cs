@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class Enemy : MonoBehaviour {
     [SerializeField]
-    GameObject playerCam;
+    GameObject playerCam, barrier;
 
     [SerializeField]
     Text quote;
@@ -72,6 +72,7 @@ public class Enemy : MonoBehaviour {
         //sleep = true;
         //playerCam.GetComponent<Grayscale>().rampOffset = -1f;
         playerCam.GetComponent<AudioListener>().enabled = false;
+        barrier.SetActive(false);
         // Restart
         yield return new WaitForSeconds(15.0f);
         playerCam.GetComponent<MotionBlur>().enabled = false;
