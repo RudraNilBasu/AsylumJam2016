@@ -1,3 +1,5 @@
+// Upgrade NOTE: replaced 'mul(UNITY_MATRIX_MVP,*)' with 'UnityObjectToClipPos(*)'
+
 Shader "Aubergine/Object/BaseFX/Fire" {
 	Properties {
 		_NoiseTex("Noise Texture", 2D) = "white" { }
@@ -49,7 +51,7 @@ Shader "Aubergine/Object/BaseFX/Fire" {
 
 			v2f vert(a2v v) {
 				v2f o;
-				o.pos = mul(UNITY_MATRIX_MVP, v.vertex);
+				o.pos = UnityObjectToClipPos(v.vertex);
 				o.uv0.xy = v.texcoord.xy;
 				o.uv0.z = v.texcoord.x;
 				o.uv0.w = -v.texcoord.y + _Speed1 * _Time.y;
